@@ -1,0 +1,14 @@
+[33m8c89d11[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m feat: configurando PostgreSQL para o ambiente
+[33m01c7e45[m Configurando banco de dados H2 em memória para habilitar os testes
+[33mf03d45a[m feat: adiciona interface ReservaRepository
+[33m80ca819[m feat: adiciona classe Reserva
+[33m90d466b[m feat: adiciona classes de [Biblioteca]
+[33m2bbd8e6[m feat: adiciona classes de [Multa]
+[33mbd0d5b9[m Adicionado Autor, Categoria, Repositories e testes
+[33mb5d8875[m adicao de testes para todas as classes
+[33m9a561fc[m Merge branch 'main' of https://github.com/rafaferreir7/sistema-biblioteca
+[33m6f4dbee[m Adição de classes de modelo, repositorios e testes de nucleo
+[33m233be02[m Update class diagram in README
+[33m4cb22af[m fix: ajusta pastas para o pacote com.biblioteca
+[33m5ab3452[m fix: move pastas model e repository para o pacote com.biblioteca
+[33m8c1d90e[m feat: estrutura inicial com model, repository, diagrama e README
