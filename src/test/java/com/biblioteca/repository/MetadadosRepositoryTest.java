@@ -26,8 +26,7 @@ public class MetadadosRepositoryTest {
 		
 		Autor autorSalvo = autorRepo.save(autor);
 		
-		assertNotNull(autorSalvo.getId());
-		
+		assertNotNull(autorSalvo.getId());	
 	}
 	
 	@Test
