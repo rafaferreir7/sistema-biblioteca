@@ -2,10 +2,13 @@ package com.negocio.fachada;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service; // <--- Import importante!
+
 import com.biblioteca.model.Emprestimo;
 import com.biblioteca.model.Reserva;
 import com.negocio.exception.FachadaException;
 
+@Service // <--- Essa anotação avisa o Spring que esta classe é o Bean da Fachada
 public class BibliotecaFachadaImpl implements BibliotecaFachada {
 
     @Override
