@@ -10,7 +10,7 @@ import com.biblioteca.model.Multa;
 import com.biblioteca.repository.MultaRepository;
 
 @Service
-public class MultaCadastro {
+public class MultaCadastro implements MultaCadastroInterface {
 
     @Autowired
     private MultaRepository multaRepository;
