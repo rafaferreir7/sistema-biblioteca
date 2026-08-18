@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Biblioteca {
@@ -14,11 +16,16 @@ public class Biblioteca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
+@NotBlank(message = "Nome é obrigatório")
+private String nome;
 
-    private String nome;
-    private String email;
-    private String telefone;
+@NotBlank(message = "Email é obrigatório")
+@Email(message = "Email inválido")
+private String email;
 
+@NotBlank(message = "Telefone é obrigatório")
+private String telefone;
     @OneToMany
     private List<Livro> livros = new ArrayList<>();
 
