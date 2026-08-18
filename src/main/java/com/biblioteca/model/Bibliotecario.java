@@ -2,12 +2,17 @@ package com.biblioteca.model;
 
 import jakarta.persistence.Entity;
 import java.time.LocalDate;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Bibliotecario extends Pessoa {
     
-    private String cargo;
-    private LocalDate dataAdmissao;
+    @NotBlank(message = "Cargo é obrigatório")
+private String cargo;
+
+@NotNull(message = "Data de admissão é obrigatória")
+private LocalDate dataAdmissao;
 
     public void cadastrarLivro(Livro livro) {
     }

@@ -3,6 +3,8 @@ package com.biblioteca.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,19 +13,20 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Categoria implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	private String descricao;
-	
+
 	@OneToMany(mappedBy = "categoria")
+	@JsonIgnore
 	private List<Livro> livros;
-	
+
 	public void atualizar() {
-		
+
 	}
 
 	public Long getId() {
@@ -57,7 +60,5 @@ public class Categoria implements Serializable {
 	public void setLivros(List<Livro> livros) {
 		this.livros = livros;
 	}
-	
-	
 
 }

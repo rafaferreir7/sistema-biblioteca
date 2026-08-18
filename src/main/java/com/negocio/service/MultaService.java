@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.biblioteca.exception.MultaJaPagaException;
+import com.biblioteca.exception.MultaNaoEncontradaException;
 import com.biblioteca.model.Multa;
 import com.biblioteca.repository.MultaRepository;
 
@@ -19,7 +21,9 @@ public class MultaService {
     public Multa cadastrar(Multa multa) {
 
         if (multa == null) {
-            throw new IllegalArgumentException("Multa não pode ser nula");
+            throw new IllegalArgumentException(
+                    "Multa não pode ser nula"
+            );
         }
 
         if (multa.getValor() <= 0) {
@@ -47,9 +51,7 @@ public class MultaService {
 
         return multaRepository.findById(id)
                 .orElseThrow(() ->
-                    new RuntimeException(
-                        "Multa não encontrada com o ID: " + id
-                    )
+                        new MultaNaoEncontradaException(id)
                 );
     }
 
@@ -62,9 +64,7 @@ public class MultaService {
         Multa multa = buscarPorId(id);
 
         if (multa.isPaga()) {
-            throw new IllegalStateException(
-                    "A multa já está paga"
-            );
+            throw new MultaJaPagaException(id);
         }
 
         multa.pagar();
