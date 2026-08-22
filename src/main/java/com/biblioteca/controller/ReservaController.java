@@ -2,6 +2,7 @@ package com.biblioteca.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import com.negocio.fachada.BibliotecaFachada;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/reservas")
+@RequestMapping("/reservas")
+@CrossOrigin(origins = "*")
 public class ReservaController {
 
     private final BibliotecaFachada fachada;
@@ -26,7 +28,6 @@ public class ReservaController {
     @PostMapping
     public ResponseEntity<Reserva> criarReserva(@Valid @RequestBody ReservaRequestDTO dto) {
         Reserva novaReserva = new Reserva();
-        // Se a sua classe Reserva tiver dataReserva ou outros campos, você pode preencher aqui:
         novaReserva.setDataReserva(dto.dataReserva());
 
         Reserva reservaSalva = fachada.criarReserva(novaReserva);

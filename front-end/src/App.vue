@@ -1,7 +1,8 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import MenuPrincipal from './components/MenuPrincipal.vue';
 </script>
 
 <template>
-  <HelloWorld />
+  <MenuPrincipal />
+  <router-view></router-view>
 </template>
