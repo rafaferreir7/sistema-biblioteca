@@ -16,8 +16,10 @@ import com.negocio.exception.LivroNaoEncontradoException;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/livros")
+
 public class LivroController {
 
     private final BibliotecaFachada fachada;

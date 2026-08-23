@@ -1,7 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <HelloWorld />
-</template>
+  <div>
+    <h1>Sistema Biblioteca</h1>
+    <router-view />
+  </div>
+</template>e>

@@ -13,8 +13,10 @@ import com.negocio.exception.CategoriaNaoEncontradaException;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/categorias")
+
 public class CategoriaController {
 
     private final BibliotecaFachada fachada;
