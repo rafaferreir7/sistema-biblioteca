@@ -1,9 +1,11 @@
 <script setup>
+import MenuPrincipal from './components/MenuPrincipal.vue'
 </script>
 
 <template>
   <div>
     <h1>Sistema Biblioteca</h1>
-    <router-view />
+    <MenuPrincipal />
+    <router-view></router-view>
   </div>
-</template>e>
+</template>

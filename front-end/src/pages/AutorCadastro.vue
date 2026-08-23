@@ -1,37 +1,34 @@
 <script setup>
 import { ref } from 'vue'
-import api from '../api/api.js'
+import { api } from '../api/api.js'
 
-const nome = ref('')
-const mensagem = ref('')
-const erro = ref('')
+const autor = ref({ nome: '' })
 
-async function salvar() {
-  mensagem.value = ''
-  erro.value = ''
+const salvarAutor = async () => {
   try {
-    await api.post('/autores', {
-      nome: nome.value
-    })
-    mensagem.value = 'Autor cadastrado com sucesso!'
-    nome.value = ''
-  } catch (e) {
-    erro.value = e.response?.data?.message || 'Erro ao cadastrar autor.'
+    await api.post('/autores', autor.value)
+    alert("Autor cadastrado com sucesso!")
+    autor.value = { nome: '' }
+  } catch (erro) {
+    alert("Erro ao salvar. Verifique se o back-end Java está rodando.")
+    console.error("Erro na API:", erro)
   }
 }
 </script>
 
 <template>
-  <div>
-    <h2>Cadastrar Autor</h2>
-    <form @submit.prevent="salvar">
+  <div style="padding: 20px; max-width: 400px;">
+    <h2>Cadastrar Novo Autor</h2>
+
+    <form @submit.prevent="salvarAutor" style="display: flex; flex-direction: column; gap: 15px;">
       <div>
         <label>Nome:</label>
-        <input v-model="nome" type="text" />
+        <input type="text" v-model="autor.nome" required style="width: 100%; padding: 8px;" />
       </div>
-      <button type="submit">Salvar</button>
+
+      <button type="submit" style="padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+        Salvar Autor
+      </button>
     </form>
-    <p v-if="mensagem" style="color: green">{{ mensagem }}</p>
-    <p v-if="erro" style="color: red">{{ erro }}</p>
   </div>
 </template>

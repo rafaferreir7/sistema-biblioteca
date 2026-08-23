@@ -1,30 +1,43 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import api from '../api/api.js'
+import { api } from '../api/api.js'
 
 const autores = ref([])
-const erro = ref('')
 
-async function carregar() {
+const buscarAutores = async () => {
   try {
     const resposta = await api.get('/autores')
     autores.value = resposta.data
-  } catch (e) {
-    erro.value = 'Erro ao carregar autores.'
+  } catch (erro) {
+    console.error("Erro ao buscar autores:", erro)
   }
 }
 
-onMounted(carregar)
+onMounted(() => {
+  buscarAutores()
+})
 </script>
 
 <template>
-  <div>
-    <h2>Autores</h2>
-    <p v-if="erro" style="color: red">{{ erro }}</p>
-    <ul>
-      <li v-for="autor in autores" :key="autor.id">
-        {{ autor.nome }}
-      </li>
-    </ul>
+  <div style="padding: 20px;">
+    <h2>Lista de Autores</h2>
+    <button @click="buscarAutores" style="margin-bottom: 15px; padding: 5px 10px;">Atualizar Lista</button>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th style="padding: 8px;">ID</th>
+          <th style="padding: 8px;">Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="autor in autores" :key="autor.id">
+          <td style="padding: 8px;">{{ autor.id }}</td>
+          <td style="padding: 8px;">{{ autor.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p v-if="autores.length === 0" style="color: gray;">Nenhum autor encontrado no banco de dados.</p>
   </div>
 </template>

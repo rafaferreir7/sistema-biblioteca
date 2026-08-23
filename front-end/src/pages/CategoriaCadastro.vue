@@ -1,44 +1,39 @@
 <script setup>
 import { ref } from 'vue'
-import api from '../api/api.js'
+import { api } from '../api/api.js'
 
-const nome = ref('')
-const descricao = ref('')
-const mensagem = ref('')
-const erro = ref('')
+const categoria = ref({ nome: '', descricao: '' })
 
-async function salvar() {
-  mensagem.value = ''
-  erro.value = ''
+const salvarCategoria = async () => {
   try {
-    await api.post('/categorias', {
-      nome: nome.value,
-      descricao: descricao.value
-    })
-    mensagem.value = 'Categoria cadastrada com sucesso!'
-    nome.value = ''
-    descricao.value = ''
-  } catch (e) {
-    erro.value = e.response?.data?.message || 'Erro ao cadastrar categoria.'
+    await api.post('/categorias', categoria.value)
+    alert("Categoria cadastrada com sucesso!")
+    categoria.value = { nome: '', descricao: '' }
+  } catch (erro) {
+    alert("Erro ao salvar. Verifique se o back-end Java está rodando.")
+    console.error("Erro na API:", erro)
   }
 }
 </script>
 
 <template>
-  <div>
-    <h2>Cadastrar Categoria</h2>
-    <form @submit.prevent="salvar">
+  <div style="padding: 20px; max-width: 400px;">
+    <h2>Cadastrar Nova Categoria</h2>
+
+    <form @submit.prevent="salvarCategoria" style="display: flex; flex-direction: column; gap: 15px;">
       <div>
         <label>Nome:</label>
-        <input v-model="nome" type="text" />
+        <input type="text" v-model="categoria.nome" required style="width: 100%; padding: 8px;" />
       </div>
+
       <div>
         <label>Descrição:</label>
-        <input v-model="descricao" type="text" />
+        <input type="text" v-model="categoria.descricao" required style="width: 100%; padding: 8px;" />
       </div>
-      <button type="submit">Salvar</button>
+
+      <button type="submit" style="padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+        Salvar Categoria
+      </button>
     </form>
-    <p v-if="mensagem" style="color: green">{{ mensagem }}</p>
-    <p v-if="erro" style="color: red">{{ erro }}</p>
   </div>
 </template>
