@@ -6,7 +6,7 @@ const autores = ref([])
 
 const buscarAutores = async () => {
   try {
-    const resposta = await api.get('/autores')
+    const resposta = await api.get('/api/autores')
     autores.value = resposta.data
   } catch (erro) {
     console.error("Erro ao buscar autores:", erro)

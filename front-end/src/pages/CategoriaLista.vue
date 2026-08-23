@@ -6,7 +6,7 @@ const categorias = ref([])
 
 const buscarCategorias = async () => {
   try {
-    const resposta = await api.get('/categorias')
+    const resposta = await api.get('/api/categorias')
     categorias.value = resposta.data
   } catch (erro) {
     console.error("Erro ao buscar categorias:", erro)

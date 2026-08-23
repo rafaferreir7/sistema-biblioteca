@@ -16,10 +16,10 @@ const autores = ref([])
 
 const carregarOpcoes = async () => {
   try {
-    const respCategorias = await api.get('/categorias')
+    const respCategorias = await api.get('/api/categorias')
     categorias.value = respCategorias.data
 
-    const respAutores = await api.get('/autores')
+    const respAutores = await api.get('/api/autores')
     autores.value = respAutores.data
   } catch (erro) {
     console.error("Erro ao carregar categorias/autores:", erro)
@@ -28,7 +28,7 @@ const carregarOpcoes = async () => {
 
 const salvarLivro = async () => {
   try {
-    await api.post('/livros', {
+    await api.post('/api/livros', {
       titulo: livro.value.titulo,
       isbn: livro.value.isbn,
       ano: Number(livro.value.ano),
@@ -94,4 +94,4 @@ onMounted(() => {
       </button>
     </form>
   </div>
-</template>e>
+</template>

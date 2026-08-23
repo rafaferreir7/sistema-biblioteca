@@ -6,7 +6,7 @@ const categoria = ref({ nome: '', descricao: '' })
 
 const salvarCategoria = async () => {
   try {
-    await api.post('/categorias', categoria.value)
+    await api.post('/api/categorias', categoria.value)
     alert("Categoria cadastrada com sucesso!")
     categoria.value = { nome: '', descricao: '' }
   } catch (erro) {

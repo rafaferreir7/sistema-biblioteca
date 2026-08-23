@@ -6,7 +6,7 @@ const livros = ref([])
 
 const buscarLivros = async () => {
   try {
-    const resposta = await api.get('/livros')
+    const resposta = await api.get('/api/livros')
     livros.value = resposta.data
   } catch (erro) {
     console.error("Erro ao buscar livros:", erro)

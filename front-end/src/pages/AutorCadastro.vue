@@ -6,7 +6,7 @@ const autor = ref({ nome: '' })
 
 const salvarAutor = async () => {
   try {
-    await api.post('/autores', autor.value)
+    await api.post('/api/autores', autor.value)
     alert("Autor cadastrado com sucesso!")
     autor.value = { nome: '' }
   } catch (erro) {
