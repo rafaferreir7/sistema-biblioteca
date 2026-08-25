@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.biblioteca.conversor.PessoaConversor;
 import com.biblioteca.dto.PessoaResponseDTO;
-import com.biblioteca.model.Pessoa;
 import com.negocio.fachada.Fachada;
 
 @RestController
