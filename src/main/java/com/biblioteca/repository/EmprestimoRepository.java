@@ -1,9 +1,8 @@
 package com.biblioteca.repository;
 
-import com.biblioteca.model.Emprestimo;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import com.biblioteca.model.Emprestimo;
+
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 }

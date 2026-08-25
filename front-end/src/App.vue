@@ -4,5 +4,6 @@ import MenuPrincipal from './components/MenuPrincipal.vue';
 
 <template>
   <MenuPrincipal />
-  <router-view></router-view>
+
+  <router-view />
 </template>
