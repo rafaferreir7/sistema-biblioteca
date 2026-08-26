@@ -4,7 +4,6 @@ import MenuPrincipal from './components/MenuPrincipal.vue'
 
 <template>
   <div>
-    <h1>Sistema Biblioteca</h1>
     <MenuPrincipal />
     <router-view></router-view>
   </div>

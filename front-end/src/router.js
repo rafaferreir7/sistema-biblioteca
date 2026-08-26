@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import Home from './pages/Home.vue'
 import ReservaLista from './pages/ReservaLista.vue'
 import ReservaCadastro from './pages/ReservaCadastro.vue'
 import LeitorLista from './pages/LeitorLista.vue'
@@ -15,6 +16,8 @@ import CategoriaLista from './pages/CategoriaLista.vue'
 import CategoriaCadastro from './pages/CategoriaCadastro.vue'
 
 const routes = [
+  { path: '/', component: Home },
+
   { path: '/reservas', component: ReservaLista },
   { path: '/reservas/novo', component: ReservaCadastro },
 

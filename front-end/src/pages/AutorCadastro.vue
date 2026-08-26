@@ -1,34 +1,40 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { api } from '../api/api.js'
 
+const router = useRouter()
+const { t } = useI18n()
 const autor = ref({ nome: '' })
 
 const salvarAutor = async () => {
   try {
     await api.post('/api/autores', autor.value)
-    alert("Autor cadastrado com sucesso!")
-    autor.value = { nome: '' }
+    alert(t('autor.sucesso'))
+    router.push('/autores')
   } catch (erro) {
-    alert("Erro ao salvar. Verifique se o back-end Java está rodando.")
+    alert(t('autor.erroSalvar'))
     console.error("Erro na API:", erro)
   }
 }
 </script>
 
 <template>
-  <div style="padding: 20px; max-width: 400px;">
-    <h2>Cadastrar Novo Autor</h2>
+  <div class="container my-4" style="max-width: 500px;">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title mb-3">{{ t('autor.cadastrarTitulo') }}</h2>
 
-    <form @submit.prevent="salvarAutor" style="display: flex; flex-direction: column; gap: 15px;">
-      <div>
-        <label>Nome:</label>
-        <input type="text" v-model="autor.nome" required style="width: 100%; padding: 8px;" />
+        <form @submit.prevent="salvarAutor">
+          <div class="mb-3">
+            <label class="form-label">{{ t('autor.nome') }}</label>
+            <input type="text" v-model="autor.nome" required class="form-control" />
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">{{ t('autor.salvar') }}</button>
+        </form>
       </div>
-
-      <button type="submit" style="padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
-        Salvar Autor
-      </button>
-    </form>
+    </div>
   </div>
 </template>

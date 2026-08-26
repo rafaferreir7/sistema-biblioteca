@@ -1,39 +1,62 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { api } from '../api/api.js'
 
-const categoria = ref({ nome: '', descricao: '' })
+const router = useRouter()
+const { t } = useI18n()
+const nomes = ref('')
+const salvando = ref(false)
+const erro = ref('')
 
-const salvarCategoria = async () => {
+async function salvarCategorias() {
+  erro.value = ''
+  const lista = nomes.value
+    .split('\n')
+    .map(l => l.trim())
+    .filter(l => l.length > 0)
+
+  if (lista.length === 0) {
+    erro.value = t('categoria.erroVazio')
+    return
+  }
+
+  salvando.value = true
   try {
-    await api.post('/api/categorias', categoria.value)
-    alert("Categoria cadastrada com sucesso!")
-    categoria.value = { nome: '', descricao: '' }
-  } catch (erro) {
-    alert("Erro ao salvar. Verifique se o back-end Java está rodando.")
-    console.error("Erro na API:", erro)
+    for (const nome of lista) {
+      await api.post('/api/categorias', { nome, descricao: nome })
+    }
+    alert(t('categoria.sucessoLote', { n: lista.length }))
+    router.push('/categorias')
+  } catch (e) {
+    erro.value = t('categoria.erroSalvar')
+    console.error(e)
+  } finally {
+    salvando.value = false
   }
 }
 </script>
 
 <template>
-  <div style="padding: 20px; max-width: 400px;">
-    <h2>Cadastrar Nova Categoria</h2>
+  <div class="container my-4" style="max-width: 500px;">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title mb-3">{{ t('categoria.cadastrarTitulo') }}</h2>
+        <div v-if="erro" class="alert alert-danger">{{ erro }}</div>
 
-    <form @submit.prevent="salvarCategoria" style="display: flex; flex-direction: column; gap: 15px;">
-      <div>
-        <label>Nome:</label>
-        <input type="text" v-model="categoria.nome" required style="width: 100%; padding: 8px;" />
+        <form @submit.prevent="salvarCategorias">
+          <div class="mb-2">
+            <label class="form-label">{{ t('categoria.nomesLabel') }}</label>
+            <textarea v-model="nomes" required class="form-control" rows="8" :placeholder="t('categoria.nomesPlaceholder')"></textarea>
+            <div class="form-text">{{ t('categoria.nomesDica') }}</div>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100" :disabled="salvando">
+            {{ salvando ? t('geral.salvando') : t('categoria.salvar') }}
+          </button>
+        </form>
       </div>
-
-      <div>
-        <label>Descrição:</label>
-        <input type="text" v-model="categoria.descricao" required style="width: 100%; padding: 8px;" />
-      </div>
-
-      <button type="submit" style="padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
-        Salvar Categoria
-      </button>
-    </form>
+    </div>
   </div>
 </template>

@@ -1,15 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { api } from '../api/api.js'
 
+const router = useRouter()
+const { t } = useI18n()
 const categorias = ref([])
+const carregando = ref(true)
 
 const buscarCategorias = async () => {
+  carregando.value = true
   try {
     const resposta = await api.get('/api/categorias')
     categorias.value = resposta.data
   } catch (erro) {
     console.error("Erro ao buscar categorias:", erro)
+  } finally {
+    carregando.value = false
   }
 }
 
@@ -19,27 +27,43 @@ onMounted(() => {
 </script>
 
 <template>
-  <div style="padding: 20px;">
-    <h2>Lista de Categorias</h2>
-    <button @click="buscarCategorias" style="margin-bottom: 15px; padding: 5px 10px;">Atualizar Lista</button>
+  <div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>{{ t('categoria.listaTitulo') }}</h2>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary" @click="buscarCategorias">
+          <i class="bi bi-arrow-clockwise"></i> {{ t('geral.atualizar') }}
+        </button>
+        <button class="btn btn-primary" @click="router.push('/categorias/novo')">
+          <i class="bi bi-plus-lg"></i> {{ t('categoria.novo') }}
+        </button>
+      </div>
+    </div>
 
-    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-      <thead style="background-color: #f2f2f2;">
-        <tr>
-          <th style="padding: 8px;">ID</th>
-          <th style="padding: 8px;">Nome</th>
-          <th style="padding: 8px;">Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="categoria in categorias" :key="categoria.id">
-          <td style="padding: 8px;">{{ categoria.id }}</td>
-          <td style="padding: 8px;">{{ categoria.nome }}</td>
-          <td style="padding: 8px;">{{ categoria.descricao }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="carregando" class="text-center text-muted py-4">
+      {{ t('geral.carregando') }}
+    </div>
 
-    <p v-if="categorias.length === 0" style="color: gray;">Nenhuma categoria encontrada no banco de dados.</p>
+    <div v-else class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>{{ t('categoria.nome') }}</th>
+            <th>{{ t('categoria.descricao') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="categoria in categorias" :key="categoria.id">
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nome }}</td>
+            <td>{{ categoria.descricao }}</td>
+          </tr>
+          <tr v-if="categorias.length === 0">
+            <td colspan="3" class="text-center text-muted">{{ t('categoria.nenhum') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
