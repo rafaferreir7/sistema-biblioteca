@@ -106,6 +106,7 @@
     "idReserva": "ID da Reserva",
     "idLeitor": "ID do Leitor",
     "idLivro": "ID do Livro",
+    "data": "Data da Reserva",
     "salvar": "Salvar Reserva",
     "sucesso": "Reserva cadastrada com sucesso!",
     "erroSalvar": "Erro ao salvar. Verifique se o back-end Java está rodando.",

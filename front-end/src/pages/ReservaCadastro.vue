@@ -6,15 +6,18 @@ import { api } from '../api/api.js';
 
 const router = useRouter();
 const { t } = useI18n();
-const reserva = ref({ leitorId: '', livroId: '' });
+const hoje = new Date().toISOString().split('T')[0];
+const reserva = ref({ leitorId: '', livroId: '', dataReserva: hoje });
+const mensagemErro = ref('');
 
 const salvarReserva = async () => {
+  mensagemErro.value = '';
   try {
     await api.post('/reservas', reserva.value);
     alert(t('reserva.sucesso'));
     router.push('/reservas');
   } catch (erro) {
-    alert(t('reserva.erroSalvar'));
+    mensagemErro.value = erro.response?.data?.message || t('reserva.erroSalvar');
     console.error("Erro na API:", erro);
   }
 };
@@ -25,6 +28,7 @@ const salvarReserva = async () => {
     <div class="card shadow-sm">
       <div class="card-body">
         <h2 class="card-title mb-3">{{ t('reserva.cadastrarTitulo') }}</h2>
+        <div v-if="mensagemErro" class="alert alert-danger">{{ mensagemErro }}</div>
 
         <form @submit.prevent="salvarReserva">
           <div class="mb-3">
@@ -35,6 +39,11 @@ const salvarReserva = async () => {
           <div class="mb-3">
             <label class="form-label">{{ t('reserva.idLivro') }}</label>
             <input type="number" v-model="reserva.livroId" required class="form-control" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{{ t('reserva.data') }}</label>
+            <input type="date" v-model="reserva.dataReserva" required class="form-control" />
           </div>
 
           <button type="submit" class="btn btn-success w-100">{{ t('reserva.salvar') }}</button>

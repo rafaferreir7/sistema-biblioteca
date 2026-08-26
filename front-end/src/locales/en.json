@@ -106,6 +106,7 @@
     "idReserva": "Reservation ID",
     "idLeitor": "Reader ID",
     "idLivro": "Book ID",
+    "data": "Reservation Date",
     "salvar": "Save Reservation",
     "sucesso": "Reservation registered successfully!",
     "erroSalvar": "Error saving. Check if the Java backend is running.",

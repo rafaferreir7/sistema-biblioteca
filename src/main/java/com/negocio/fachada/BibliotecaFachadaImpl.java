@@ -20,6 +20,7 @@ import com.negocio.exception.LivroNaoEncontradoException;
 import com.negocio.service.AutorService;
 import com.negocio.service.CategoriaService;
 import com.negocio.service.LivroService;
+import com.negocio.service.ReservaService;
 
 @Service
 public class BibliotecaFachadaImpl implements BibliotecaFachada {
@@ -32,6 +33,9 @@ public class BibliotecaFachadaImpl implements BibliotecaFachada {
 
     @Autowired
     private CategoriaService categoriaService;
+
+    @Autowired
+    private ReservaService reservaService;
 
     @Override
     public Emprestimo realizarEmprestimoComplexo(Emprestimo emprestimo) {
@@ -48,7 +52,10 @@ public class BibliotecaFachadaImpl implements BibliotecaFachada {
 
     @Override
     public Reserva criarReserva(Reserva reserva) {
-        return null;
+        if (reserva.getLeitor() == null || reserva.getLivro() == null) {
+            throw new FachadaException("Leitor ou Livro faltantes na reserva");
+        }
+        return reservaService.salvarReserva(reserva);
     }
 
     @Override
