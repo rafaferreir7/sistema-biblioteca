@@ -1,0 +1,378 @@
+{
+	"info": {
+		"name": "Sistema Biblioteca - API",
+		"description": "Collection com todas as rotas do back-end (Leitor, Livro, Autor, Categoria, Multa, Reserva, Empréstimo, Biblioteca, Bibliotecário, Pessoa)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Leitor",
+			"item": [
+				{
+					"name": "Cadastrar Leitor",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Maria Teste\",\n  \"cpf\": \"98765432100\",\n  \"email\": \"maria@teste.com\",\n  \"telefone\": \"87999999999\",\n  \"ativo\": true\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/leitores", "host": ["{{baseUrl}}"], "path": ["leitores"] }
+					}
+				},
+				{
+					"name": "Listar Leitores",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/leitores", "host": ["{{baseUrl}}"], "path": ["leitores"] }
+					}
+				},
+				{
+					"name": "Buscar Leitor por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/leitores/1", "host": ["{{baseUrl}}"], "path": ["leitores", "1"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Livro",
+			"item": [
+				{
+					"name": "Cadastrar Livro",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Java para Iniciantes\",\n  \"isbn\": \"9781234567890\",\n  \"ano\": 2026,\n  \"quantidade\": 5,\n  \"categoriaId\": 1,\n  \"autorIds\": [1]\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/api/livros", "host": ["{{baseUrl}}"], "path": ["api", "livros"] }
+					}
+				},
+				{
+					"name": "Listar Livros",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/livros", "host": ["{{baseUrl}}"], "path": ["api", "livros"] }
+					}
+				},
+				{
+					"name": "Buscar Livro por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/livros/1", "host": ["{{baseUrl}}"], "path": ["api", "livros", "1"] }
+					}
+				},
+				{
+					"name": "Atualizar Livro",
+					"request": {
+						"method": "PUT",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Java Avançado\",\n  \"isbn\": \"9781234567890\",\n  \"ano\": 2026,\n  \"quantidade\": 3,\n  \"categoriaId\": 1,\n  \"autorIds\": [1]\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/api/livros/1", "host": ["{{baseUrl}}"], "path": ["api", "livros", "1"] }
+					}
+				},
+				{
+					"name": "Remover Livro",
+					"request": {
+						"method": "DELETE",
+						"url": { "raw": "{{baseUrl}}/api/livros/1", "host": ["{{baseUrl}}"], "path": ["api", "livros", "1"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "Cadastrar Autor",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": { "mode": "raw", "raw": "{\n  \"nome\": \"Marco Aurélio\"\n}" },
+						"url": { "raw": "{{baseUrl}}/api/autores", "host": ["{{baseUrl}}"], "path": ["api", "autores"] }
+					}
+				},
+				{
+					"name": "Listar Autores",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/autores", "host": ["{{baseUrl}}"], "path": ["api", "autores"] }
+					}
+				},
+				{
+					"name": "Buscar Autor por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/autores/1", "host": ["{{baseUrl}}"], "path": ["api", "autores", "1"] }
+					}
+				},
+				{
+					"name": "Atualizar Autor",
+					"request": {
+						"method": "PUT",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": { "mode": "raw", "raw": "{\n  \"nome\": \"Marco Aurélio Editado\"\n}" },
+						"url": { "raw": "{{baseUrl}}/api/autores/1", "host": ["{{baseUrl}}"], "path": ["api", "autores", "1"] }
+					}
+				},
+				{
+					"name": "Remover Autor",
+					"request": {
+						"method": "DELETE",
+						"url": { "raw": "{{baseUrl}}/api/autores/1", "host": ["{{baseUrl}}"], "path": ["api", "autores", "1"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Cadastrar Categoria",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": { "mode": "raw", "raw": "{\n  \"nome\": \"Programação\",\n  \"descricao\": \"Programação\"\n}" },
+						"url": { "raw": "{{baseUrl}}/api/categorias", "host": ["{{baseUrl}}"], "path": ["api", "categorias"] }
+					}
+				},
+				{
+					"name": "Listar Categorias",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/categorias", "host": ["{{baseUrl}}"], "path": ["api", "categorias"] }
+					}
+				},
+				{
+					"name": "Buscar Categoria por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/api/categorias/1", "host": ["{{baseUrl}}"], "path": ["api", "categorias", "1"] }
+					}
+				},
+				{
+					"name": "Atualizar Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": { "mode": "raw", "raw": "{\n  \"nome\": \"Programação Avançada\",\n  \"descricao\": \"Programação Avançada\"\n}" },
+						"url": { "raw": "{{baseUrl}}/api/categorias/1", "host": ["{{baseUrl}}"], "path": ["api", "categorias", "1"] }
+					}
+				},
+				{
+					"name": "Remover Categoria",
+					"request": {
+						"method": "DELETE",
+						"url": { "raw": "{{baseUrl}}/api/categorias/1", "host": ["{{baseUrl}}"], "path": ["api", "categorias", "1"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Multa",
+			"item": [
+				{
+					"name": "Registrar Multa",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"valor\": 15.00,\n  \"motivo\": \"Atraso na devolução\",\n  \"emprestimoId\": 1\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/multas", "host": ["{{baseUrl}}"], "path": ["multas"] }
+					}
+				},
+				{
+					"name": "Listar Multas",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/multas", "host": ["{{baseUrl}}"], "path": ["multas"] }
+					}
+				},
+				{
+					"name": "Buscar Multa por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/multas/1", "host": ["{{baseUrl}}"], "path": ["multas", "1"] }
+					}
+				},
+				{
+					"name": "Pagar Multa",
+					"request": {
+						"method": "PUT",
+						"url": { "raw": "{{baseUrl}}/multas/1/pagar", "host": ["{{baseUrl}}"], "path": ["multas", "1", "pagar"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "Criar Reserva",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"leitorId\": 1,\n  \"livroId\": 1,\n  \"dataReserva\": \"2026-08-27\"\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/reservas", "host": ["{{baseUrl}}"], "path": ["reservas"] }
+					}
+				},
+				{
+					"name": "Listar Reservas",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/reservas", "host": ["{{baseUrl}}"], "path": ["reservas"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Empréstimo",
+			"item": [
+				{
+					"name": "Cadastrar Empréstimo",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"leitorId\": 1,\n  \"livroId\": 1,\n  \"dataDevolucaoPrevista\": \"2026-09-10\"\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/emprestimos", "host": ["{{baseUrl}}"], "path": ["emprestimos"] }
+					}
+				},
+				{
+					"name": "Listar Empréstimos",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/emprestimos", "host": ["{{baseUrl}}"], "path": ["emprestimos"] }
+					}
+				},
+				{
+					"name": "Buscar Empréstimo por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/emprestimos/1", "host": ["{{baseUrl}}"], "path": ["emprestimos", "1"] }
+					}
+				},
+				{
+					"name": "Registrar Devolução",
+					"request": {
+						"method": "PUT",
+						"url": { "raw": "{{baseUrl}}/emprestimos/1/devolucao", "host": ["{{baseUrl}}"], "path": ["emprestimos", "1", "devolucao"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Biblioteca",
+			"item": [
+				{
+					"name": "Cadastrar Biblioteca",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Biblioteca Central\",\n  \"email\": \"central@biblioteca.com\",\n  \"telefone\": \"8730000000\"\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/bibliotecas", "host": ["{{baseUrl}}"], "path": ["bibliotecas"] }
+					}
+				},
+				{
+					"name": "Listar Bibliotecas",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/bibliotecas", "host": ["{{baseUrl}}"], "path": ["bibliotecas"] }
+					}
+				},
+				{
+					"name": "Buscar Biblioteca por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/bibliotecas/1", "host": ["{{baseUrl}}"], "path": ["bibliotecas", "1"] }
+					}
+				},
+				{
+					"name": "Atualizar Biblioteca",
+					"request": {
+						"method": "PUT",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Biblioteca Central Editada\",\n  \"email\": \"central@biblioteca.com\",\n  \"telefone\": \"8730000000\"\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/bibliotecas/1", "host": ["{{baseUrl}}"], "path": ["bibliotecas", "1"] }
+					}
+				},
+				{
+					"name": "Remover Biblioteca",
+					"request": {
+						"method": "DELETE",
+						"url": { "raw": "{{baseUrl}}/bibliotecas/1", "host": ["{{baseUrl}}"], "path": ["bibliotecas", "1"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Bibliotecário",
+			"item": [
+				{
+					"name": "Cadastrar Bibliotecário",
+					"request": {
+						"method": "POST",
+						"header": [{ "key": "Content-Type", "value": "application/json" }],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Pedro Gestor\",\n  \"cpf\": \"11122233344\",\n  \"email\": \"pedro@biblioteca.com\",\n  \"telefone\": \"8730000001\",\n  \"cargo\": \"Gerente Geral\",\n  \"dataAdmissao\": \"2024-01-10\"\n}"
+						},
+						"url": { "raw": "{{baseUrl}}/bibliotecarios", "host": ["{{baseUrl}}"], "path": ["bibliotecarios"] }
+					}
+				},
+				{
+					"name": "Listar Bibliotecários",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/bibliotecarios", "host": ["{{baseUrl}}"], "path": ["bibliotecarios"] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "Listar Pessoas",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/pessoas", "host": ["{{baseUrl}}"], "path": ["pessoas"] }
+					}
+				},
+				{
+					"name": "Buscar Pessoa por ID",
+					"request": {
+						"method": "GET",
+						"url": { "raw": "{{baseUrl}}/pessoas/1", "host": ["{{baseUrl}}"], "path": ["pessoas", "1"] }
+					}
+				}
+			]
+		}
+	]
+}
