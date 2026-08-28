@@ -1,15 +1,16 @@
 package com.biblioteca.repository;
 
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import com.biblioteca.model.Bibliotecario;
 import com.biblioteca.model.Emprestimo;
 import com.biblioteca.model.Leitor;
 import com.biblioteca.model.Livro;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 public class NucleoRepositoryTest {
@@ -31,7 +32,6 @@ public class NucleoRepositoryTest {
         Leitor leitor = new Leitor();
         leitor.setNome("Rafaela");
         leitor.setCpf("12345678900");
-        
         Leitor leitorSalvo = leitorRepo.save(leitor);
         assertNotNull(leitorSalvo.getId());
     }
@@ -41,7 +41,7 @@ public class NucleoRepositoryTest {
         Bibliotecario bibliotecario = new Bibliotecario();
         bibliotecario.setNome("Marcos");
         bibliotecario.setCargo("Gerente Geral");
-        
+        bibliotecario.setDataAdmissao(LocalDate.now());
         Bibliotecario salvo = bibliotecarioRepo.save(bibliotecario);
         assertNotNull(salvo.getId());
     }
@@ -51,7 +51,6 @@ public class NucleoRepositoryTest {
         Livro livro = new Livro();
         livro.setTitulo("Java para Iniciantes");
         livro.setIsbn("999-888-777");
-        
         Livro salvo = livroRepo.save(livro);
         assertNotNull(salvo.getId());
     }
@@ -71,7 +70,6 @@ public class NucleoRepositoryTest {
         emprestimo.setDataEmprestimo(LocalDate.now());
         emprestimo.setLeitor(leitor);
         emprestimo.setLivro(livro);
-        
         Emprestimo salvo = emprestimoRepo.save(emprestimo);
         assertNotNull(salvo.getId());
     }
