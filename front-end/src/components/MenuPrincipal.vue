@@ -27,10 +27,8 @@ onMounted(() => {
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 mb-4">
-
     <router-link to="/" class="navbar-brand text-decoration-none">
-      <i class="bi bi-book"></i>
-      {{ t('menu.titulo') }}
+      <i class="bi bi-book"></i> {{ t('menu.titulo') }}
     </router-link>
 
     <button
@@ -43,194 +41,99 @@ onMounted(() => {
     </button>
 
     <div class="collapse navbar-collapse" id="menuNav">
-
       <ul class="navbar-nav me-auto">
 
         <!-- RESERVAS -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.reservas') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/reservas">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/reservas/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/reservas">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/reservas/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
-
 
         <!-- LEITORES -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.leitores') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/leitores">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/leitores/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/leitores">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/leitores/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
-
 
         <!-- MULTAS -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.multas') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/multas">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/multas/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/multas">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/multas/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
-
 
         <!-- LIVROS -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.livros') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/livros">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/livros/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/livros">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/livros/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
-
 
         <!-- EXEMPLARES -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             Exemplares
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/exemplares">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/exemplares/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/exemplares">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/exemplares/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
 
+        <!-- LOCALIZAÇÕES -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            Localizações
+          </a>
+          <ul class="dropdown-menu">
+            <li><router-link class="dropdown-item" to="/localizacoes">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/localizacoes/novo">{{ t('menu.novo') }}</router-link></li>
+          </ul>
+        </li>
 
         <!-- AUTORES -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.autores') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/autores">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/autores/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/autores">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/autores/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
 
-
         <!-- CATEGORIAS -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             {{ t('menu.categorias') }}
           </a>
-
           <ul class="dropdown-menu">
-            <li>
-              <router-link class="dropdown-item" to="/categorias">
-                {{ t('menu.listar') }}
-              </router-link>
-            </li>
-
-            <li>
-              <router-link class="dropdown-item" to="/categorias/novo">
-                {{ t('menu.novo') }}
-              </router-link>
-            </li>
+            <li><router-link class="dropdown-item" to="/categorias">{{ t('menu.listar') }}</router-link></li>
+            <li><router-link class="dropdown-item" to="/categorias/novo">{{ t('menu.novo') }}</router-link></li>
           </ul>
         </li>
 
       </ul>
 
-
-      <!-- BOTÃO DE TEMA -->
+      <!-- TEMA -->
       <button
         class="btn btn-outline-light btn-sm me-2"
         @click="trocarTema"
@@ -239,8 +142,7 @@ onMounted(() => {
         <i :class="temaEscuro ? 'bi bi-sun' : 'bi bi-moon-stars'"></i>
       </button>
 
-
-      <!-- SELETOR DE IDIOMA -->
+      <!-- IDIOMA -->
       <select
         class="form-select form-select-sm w-auto"
         :value="locale"
@@ -249,7 +151,6 @@ onMounted(() => {
         <option value="pt">🇧🇷 PT</option>
         <option value="en">🇺🇸 EN</option>
       </select>
-
     </div>
   </nav>
 </template>
