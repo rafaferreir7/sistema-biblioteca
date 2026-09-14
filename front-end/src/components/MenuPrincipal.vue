@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+
 const { t, locale } = useI18n()
 
 function trocarIdioma(novo) {
@@ -30,7 +31,12 @@ onMounted(() => {
       <i class="bi bi-book"></i> {{ t('menu.titulo') }}
     </router-link>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menuNav"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -38,60 +44,183 @@ onMounted(() => {
       <ul class="navbar-nav me-auto">
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.reservas') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.reservas') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/reservas">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/reservas/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/reservas">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/reservas/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.leitores') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.leitores') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/leitores">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/leitores/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/leitores">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/leitores/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.multas') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.multas') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/multas">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/multas/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/multas">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/multas/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.livros') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.livros') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/livros">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/livros/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/livros">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/livros/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
+          </ul>
+        </li>
+
+        <!-- MENU DE EXEMPLARES -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            Exemplares
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <router-link class="dropdown-item" to="/exemplares">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.autores') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.autores') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/autores">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/autores/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/autores">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/autores/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{ t('menu.categorias') }}</a>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            {{ t('menu.categorias') }}
+          </a>
+
           <ul class="dropdown-menu">
-            <li><router-link class="dropdown-item" to="/categorias">{{ t('menu.listar') }}</router-link></li>
-            <li><router-link class="dropdown-item" to="/categorias/novo">{{ t('menu.novo') }}</router-link></li>
+            <li>
+              <router-link class="dropdown-item" to="/categorias">
+                {{ t('menu.listar') }}
+              </router-link>
+            </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/categorias/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
       </ul>
 
-      <button class="btn btn-outline-light btn-sm me-2" @click="trocarTema" type="button">
+      <button
+        class="btn btn-outline-light btn-sm me-2"
+        @click="trocarTema"
+        type="button"
+      >
         <i :class="temaEscuro ? 'bi bi-sun' : 'bi bi-moon-stars'"></i>
       </button>
 
-      <select class="form-select form-select-sm w-auto" :value="locale" @change="trocarIdioma($event.target.value)">
+      <select
+        class="form-select form-select-sm w-auto"
+        :value="locale"
+        @change="trocarIdioma($event.target.value)"
+      >
         <option value="pt">🇧🇷 PT</option>
         <option value="en">🇺🇸 EN</option>
       </select>
