@@ -23,6 +23,7 @@ import BibliotecarioLista from './pages/BibliotecarioLista.vue'
 import BibliotecarioCadastro from './pages/BibliotecarioCadastro.vue'
 import BibliotecaLista from './pages/BibliotecaLista.vue'
 import BibliotecaCadastro from './pages/BibliotecaCadastro.vue'
+import ExemplarLista from './pages/ExemplarLista.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -53,6 +54,8 @@ const routes = [
 
   { path: '/bibliotecas', component: BibliotecaLista },
   { path: '/bibliotecas/novo', component: BibliotecaCadastro },
+
+   { path: '/exemplares', component: ExemplarLista },
 ]
 
 export const router = createRouter({
