@@ -27,8 +27,10 @@ onMounted(() => {
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 mb-4">
+
     <router-link to="/" class="navbar-brand text-decoration-none">
-      <i class="bi bi-book"></i> {{ t('menu.titulo') }}
+      <i class="bi bi-book"></i>
+      {{ t('menu.titulo') }}
     </router-link>
 
     <button
@@ -41,8 +43,10 @@ onMounted(() => {
     </button>
 
     <div class="collapse navbar-collapse" id="menuNav">
+
       <ul class="navbar-nav me-auto">
 
+        <!-- RESERVAS -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -67,6 +71,8 @@ onMounted(() => {
           </ul>
         </li>
 
+
+        <!-- LEITORES -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -91,6 +97,8 @@ onMounted(() => {
           </ul>
         </li>
 
+
+        <!-- MULTAS -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -115,6 +123,8 @@ onMounted(() => {
           </ul>
         </li>
 
+
+        <!-- LIVROS -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -139,7 +149,8 @@ onMounted(() => {
           </ul>
         </li>
 
-        <!-- MENU DE EXEMPLARES -->
+
+        <!-- EXEMPLARES -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -155,9 +166,17 @@ onMounted(() => {
                 {{ t('menu.listar') }}
               </router-link>
             </li>
+
+            <li>
+              <router-link class="dropdown-item" to="/exemplares/novo">
+                {{ t('menu.novo') }}
+              </router-link>
+            </li>
           </ul>
         </li>
 
+
+        <!-- AUTORES -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -182,6 +201,8 @@ onMounted(() => {
           </ul>
         </li>
 
+
+        <!-- CATEGORIAS -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -208,6 +229,8 @@ onMounted(() => {
 
       </ul>
 
+
+      <!-- BOTÃO DE TEMA -->
       <button
         class="btn btn-outline-light btn-sm me-2"
         @click="trocarTema"
@@ -216,6 +239,8 @@ onMounted(() => {
         <i :class="temaEscuro ? 'bi bi-sun' : 'bi bi-moon-stars'"></i>
       </button>
 
+
+      <!-- SELETOR DE IDIOMA -->
       <select
         class="form-select form-select-sm w-auto"
         :value="locale"
@@ -224,6 +249,7 @@ onMounted(() => {
         <option value="pt">🇧🇷 PT</option>
         <option value="en">🇺🇸 EN</option>
       </select>
+
     </div>
   </nav>
 </template>
