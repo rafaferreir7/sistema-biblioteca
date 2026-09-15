@@ -1,5 +1,7 @@
 package com.biblioteca.model;
 
+import com.negocio.exception.ExemplarIndisponivelException;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Exemplar implements Serializable {
     private Long id;
 
     private String codigoPatrimonio;
+
     private boolean disponivel;
 
     @ManyToOne
@@ -30,12 +33,34 @@ public class Exemplar implements Serializable {
     public Exemplar() {
     }
 
-    public Exemplar(String codigoPatrimonio, boolean disponivel,
-                    Livro livro, Localizacao localizacao) {
+    public Exemplar(
+            String codigoPatrimonio,
+            boolean disponivel,
+            Livro livro,
+            Localizacao localizacao) {
+
         this.codigoPatrimonio = codigoPatrimonio;
         this.disponivel = disponivel;
         this.livro = livro;
         this.localizacao = localizacao;
+    }
+
+    /*
+     * Regra de negócio do Exemplar.
+     *
+     * Um exemplar que já está indisponível não pode ser
+     * marcado como indisponível novamente.
+     */
+    public void tornarIndisponivel()
+            throws ExemplarIndisponivelException {
+
+        if (!disponivel) {
+            throw new ExemplarIndisponivelException(
+                    "O exemplar já está indisponível"
+            );
+        }
+
+        disponivel = false;
     }
 
     public Long getId() {
